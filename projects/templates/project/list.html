@@ -1,0 +1,80 @@
+{% extends "project/base.html" %}
+
+{% block body %}
+  <h3 class="m-4">All Projects</h3>
+  <div class="row">
+      <div class="col-12">
+          {% if project_list %}
+          <div class="card bg-light ms-4 me-4 mb-4">
+              <div class="card-header">
+                  <i class="fa-solid fa-list"></i> Project List
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  <div class="table-responsive">
+                      <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th scope="col">Project Name</th>
+                              <th scope="col">Creator</th>
+                              <th scope="col">Created On</th>
+                              <th scope="col">Deadline</th>
+                              <th scope="col">Description</th>
+                              <th scope="col">Resources</th>
+                              <th scope="col">Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              {% for project in project_list %}
+                                  <tr>
+                                      <td>{{ project.name }}</td>
+                                      <td>{{ project.creator }}</td>
+                                      <td>{{ project.created_on }}</td>
+                                      <td>{{ project.deadline }}</td>
+                                      <td>{{ project.description }}</td>
+                                      <td>{{ project.project_resources }}</td>
+                                      <td>
+                                        <button type="button" class="btn btn-success me-1" href="{% url 'project_view' project.id %}" data-bs-toggle="modal" data-bs-target="#myModal{{project.id}}"><i class="fa-solid fa-circle-info"></i>
+                                        </button>
+                                        <div class="modal" id="myModal{{project.id}}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                          <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <h5 class="modal-title">
+                                                  {{ self.name }}
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true"></span>
+                                                </button>
+                                              </div>
+                                              <div class="modal-body">
+                                                <ul class="list-unstyled">
+                                                  <li>Project Name: <strong>{{ project.name }}</strong></li>
+                                                  <li>Creator: <strong>{{ project.creator }}</strong></li>
+                                                  <li>Created On: <strong>{{ project.created_on }}</strong></li>
+                                                  <li>Deadline: <strong>{{ project.deadline }}</strong></li>
+                                                  <li>Description: <strong>{{ project.description }}</strong></li>
+                                                  <li>Resources: <strong>{{ project.project_resources }}</strong></li>
+                                                </ul>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </td>
+                                  </tr>
+                              {% endfor %}
+                          </tbody>
+                        </table> 
+                  </div>
+                </p>
+              </div>
+            </div>
+          {% else %}
+              <h5 class="alert alert-primary ms-4 me-4">No Projects Created</h5>
+          {% endif %}  
+      </div>
+  </div>
+{% endblock %}

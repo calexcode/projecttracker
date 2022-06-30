@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Project Tracker</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <body class="d-flex flex-column min-vh-100">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="{% url 'project_list' %}">
+                    <i class="fa-solid fa-briefcase"></i> Project Tracker
+                  </a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+              
+                  <div class="collapse navbar-collapse" id="navbarColor03">
+                    <ul class="navbar-nav me-auto">
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'project_list' %}">
+                            <i class="fa-solid fa-list"></i> All Projects
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'add' %}">
+                            <i class="fa-solid fa-folder-plus"></i>  Add Project
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+            <div class="container-fluid">
+                {% block body %}
+                {% endblock %}
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        </body>
+    </head>
+</html>
